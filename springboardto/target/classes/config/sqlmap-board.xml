@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardDAO">
+	<select id="getBookList" resultType="boardVO">
+			SELECT * FROM SPRING
+			ORDER BY NUM
+	</select>
+	
+	<select id="select" parameterType="map" resultType="boardVO">
+			SELECT * FROM SPRING
+			where NUM = #{num}
+	</select>
+	
+	<insert id="insert" parameterType="boardVO">
+			INSERT INTO SPRING
+			(num, bookisbn, bookname, bookmake,bookfrom,bookprice,
+				filepath,filename,bookintro)
+			VALUES
+			(SPRING_SEQ.nextval,
+				#{bookisbn}, #{bookname},#{bookmake},#{bookfrom},#{bookprice},
+				#{filepath},#{filename},#{bookintro})
+	</insert>
+	
+	<select id="selectByBookname" parameterType="String" resultType="boardVO">
+		select * from "SPRING" where "BOOKNAME" like '%'||#{bookname}||'%' order by "NUM"
+	</select>
+	
+
+</mapper>
